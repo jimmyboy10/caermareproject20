@@ -140,7 +140,7 @@
         <input type="text" id="pos" required>
         <button type="button" onclick="generateDocument()">Generate Document</button>
       </form>
-    
+    <div id="generated-document"></div>		
 	    
     </div>
     <script>
@@ -160,7 +160,7 @@
         const rela = document.getElementById('rela').value;
         const documentOutput = `
                 
-		  <div id="generated-document"></div>																<h2>Generated Document</h2>
+		  														<h2>Generated Document</h2>
 <p> 𝙇𝙤𝙤𝙠: Ang Juander Radyo Loyalista Incorporated, Zamboanga del Norte Chapter, mi released sa laing hugna, sa ika ${count} nga Death Assistance, ngadto sa kabanay nga namatay'ng membro sa Juander Radyo Loyalista nga si ${name} ${last} nga taga ${add1}.
  Namatay adtong ${date} sa edad nga ${age} anyos tungod sa sakit nga ${cause}.
 																			<br>
