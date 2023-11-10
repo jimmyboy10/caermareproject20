@@ -141,6 +141,7 @@
         <button type="button" onclick="generateDocument()">Generate Document</button>
       </form>
       <div id="generated-document"></div>
+	     <button id="copy-button" onclick="copyToClipboard()" disabled>Copy to Clipboard</button>
     </div>
     <script>
       function generateDocument() {
@@ -184,7 +185,18 @@ Sa gustong mo-apil sa Juander Radyo Loyalista palihug lamang sa pagbisita sa opi
 
             `;
         document.getElementById('generated-document').innerHTML = documentOutput;
+	       document.getElementById('copy-button').disabled = false;
       }
+   function copyToClipboard() {
+            const generatedDocument = document.getElementById('generated-document');
+            const range = document.createRange();
+            range.selectNode(generatedDocument);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert('Document copied to clipboard!');
+        }
 
 
 
