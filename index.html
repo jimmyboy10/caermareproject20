@@ -6,6 +6,11 @@
     <title>Document Generator</title>
 
     <script type="text/javascript">
+
+
+
+
+
         //<![CDATA[
         var show_msg = '';
         if (show_msg !== '0') {
@@ -107,7 +112,8 @@
 
       }
       
-
+      
+    
 
       button {
         padding: 10px 20px;
@@ -126,7 +132,7 @@
         <label for="count" id="count1">Death Member #:</label> 
         <input type="text" id="count" required><br>
         <label for="name">First Name:</label>
-        <input type="text" id="name" required>
+        <input type="text" id="name" oninput="checkForm()" required>
         <label for="last">Last Name:</label>
         <input type="text" id="last" required>
         <label for="age">Age:</label>
@@ -148,8 +154,8 @@
         <label for="host">Given By:</label>
         <input type="text" id="host" required>
         <label for="pos">Possition:</label>
-        <input type="text" id="pos" class="input"  required >
-        <button type="submit" onclick="generateDocument()" id="submitButton" class="button">Generate Document</button>
+        <input type="text" id="pos" oninput="checkForm()" required >
+        <button type="button" onclick="generateDocument()" id="gen" disabled>Generate Document</button>
       </form>
       <h2 id="header1" hidden>Generated Document</h2>
 
@@ -163,22 +169,6 @@
 
     </div>
     <script>
-
-
-
-let input = document.querySelector(".input");
-let button = document.querySelector(".button");
-button.disabled = true;
-input.addEventListener("change", stateHandle);
-
-function stateHandle() {
-    if(document.querySelector(".input").value === "") {
-        button.disabled = true;
-    } else {
-        button.disabled = false;
-    }
-}
-
 
 
 
@@ -210,7 +200,7 @@ Si ${coor}, ang Coordinator sa ${add2}, ang mi uban sa ${rela} nga tagtungod nga
 Pahasubo sa Pamilyang ${last}, gikan sa Juander Radyo Dipolog 97.5 ug Juander Radyo Loyalista INC. Zamboanga del Norte Chapter.
 <br>
 																				<br>
-Samtang subli natong gipahinumdom nga dili matabangan ang membro sa Juander Radyo Loyalista nga 3 ka Sagonson nga palta sa Weekly Collection Form, Kanang Maghikog, kanang membro wala pay bulan, ug Double Entry ang Pangalan sa Lain Coordinator.
+Samtang subli natong gipahinumdom nga dili matabangan ang membro sa Juander Radyo Loyalista nga 3 ka Sagonson nga palta sa Weekly Collection Form, Kanang Maghikog, kanang membro wala pay bulan, ug Double Entry ang Pangalan sa Lain nga Coordinator.
 <br>
 <br>
 Sa gustong mo-apil sa Juander Radyo Loyalista palihug lamang sa pagbisita sa opisina sa Juander Radyo Loyalista Incorporated Zamboanga del Norte Chapter nahimutang sa Ortega Bldg. Purok Cacao, Barangay Minaog Dipolog, o kaha Contact sa Cel No. 0917 124 5969 Pangita-a si Ms. Kimberly Rose Acebron ang Special Project Head.
@@ -262,7 +252,21 @@ Sa gustong mo-apil sa Juander Radyo Loyalista palihug lamang sa pagbisita sa opi
 
     
 
+        function checkForm() {
+            // Get form elements
+            var nameInput = document.getElementById('name');
+            var posInput = document.getElementById('pos');
+            var submitBtn = document.getElementById('gen');
 
+            // Check if both name and email are filled
+            if (nameInput.value.trim() !== '' && posInput.value.trim() !== '') {
+                // Enable the submit button
+                submitBtn.removeAttribute('disabled');
+            } else {
+                // Disable the submit button
+                submitBtn.setAttribute('disabled', 'disabled');
+            }
+        }
 
 
 
