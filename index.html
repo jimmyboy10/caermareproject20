@@ -185,11 +185,11 @@ Sa gustong mo-apil sa Juander Radyo Loyalista palihug lamang sa pagbisita sa opi
 <br>
 
 																						<br>
- <button id="copy-button" onclick="copyToClipboard()" hidden>Copy to Clipboard</button>
+ <button id="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
             `;
         document.getElementById('generated-document').innerHTML = documentOutput;
-	       document.getElementById('copy-button').disabled = false;
-	      document.getElementById('copy-button').display = block;
+	       // document.getElementById('copy-button').disabled = false;
+	      // document.getElementById('copy-button').display = block;
       }
    function copyToClipboard() {
             const generatedDocument = document.getElementById('generated-document');
