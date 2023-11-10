@@ -140,8 +140,8 @@
         <input type="text" id="pos" required>
         <button type="button" onclick="generateDocument()">Generate Document</button>
       </form>
-      <div id="generated-document"></div>
-	     <button id="copy-button" onclick="copyToClipboard()" disabled>Copy to Clipboard</button>
+    
+	    
     </div>
     <script>
       function generateDocument() {
@@ -160,7 +160,7 @@
         const rela = document.getElementById('rela').value;
         const documentOutput = `
                 
-																		<h2>Generated Document</h2>
+		  <div id="generated-document"></div>																<h2>Generated Document</h2>
 <p> 𝙇𝙤𝙤𝙠: Ang Juander Radyo Loyalista Incorporated, Zamboanga del Norte Chapter, mi released sa laing hugna, sa ika ${count} nga Death Assistance, ngadto sa kabanay nga namatay'ng membro sa Juander Radyo Loyalista nga si ${name} ${last} nga taga ${add1}.
  Namatay adtong ${date} sa edad nga ${age} anyos tungod sa sakit nga ${cause}.
 																			<br>
@@ -181,8 +181,11 @@ Sa gustong mo-apil sa Juander Radyo Loyalista palihug lamang sa pagbisita sa opi
 #angpinakamasaligansaserbisyopubliko
 																					<br>
 #juanderradyodipolog97.5FM
-																						<br>
 
+<br>
+
+																						<br>
+ <button id="copy-button" onclick="copyToClipboard()" hidden>Copy to Clipboard</button>
             `;
         document.getElementById('generated-document').innerHTML = documentOutput;
 	       document.getElementById('copy-button').disabled = false;
