@@ -61,7 +61,9 @@
                 x.className = x.className.replace("show", "")
             }, 3000);
         }
-    //]]>
+
+     
+
     </script>
 
 
@@ -86,7 +88,7 @@
       }
 
       label {
-        display: block;
+        display: inline-block;
         margin-bottom: 5px;
       }
 
@@ -97,6 +99,36 @@
         margin-bottom: 15px;
         box-sizing: border-box;
       }
+      #count{
+        width: 10%;
+  
+
+
+
+      }
+      
+      
+      #name {
+
+        width: 30%;
+        display: inline;
+
+
+      }
+      #last {
+
+width: 30%;
+display: inline;
+
+
+}
+
+#age {
+
+width: 10%;
+display: inline;
+}
+
 
       button {
         padding: 10px 20px;
@@ -112,8 +144,8 @@
     <div id="document-container">
       <h1>Document Generator</h1>
       <form id="document-form">
-        <label for="count">Death Member #:</label>
-        <input type="text" id="count" required>
+        <label for="count" id="count1">Death Member #:</label> 
+        <input type="text" id="count" required><br>
         <label for="name">First Name:</label>
         <input type="text" id="name" required>
         <label for="last">Last Name:</label>
@@ -137,13 +169,43 @@
         <label for="host">Given By:</label>
         <input type="text" id="host" required>
         <label for="pos">Possition:</label>
-        <input type="text" id="pos" required>
-        <button type="button" onclick="generateDocument()">Generate Document</button>
+        <input type="text" id="pos" class="input"  required >
+        <button type="submit" onclick="generateDocument()" id="submitButton" class="button">Generate Document</button>
       </form>
-    <div id="generated-document"></div>		
-	    
+      <h2 id="header1" hidden>Generated Document</h2>
+
+      <div id="generated-document"></div>
+      
+
+      <button id="copy-button" onclick="copyToClipboard()" hidden>Copy to Clipboard</button>
+
+      
+
+
     </div>
     <script>
+
+
+
+let input = document.querySelector(".input");
+let button = document.querySelector(".button");
+button.disabled = true;
+input.addEventListener("change", stateHandle);
+
+function stateHandle() {
+    if(document.querySelector(".input").value === "") {
+        button.disabled = true;
+    } else {
+        button.disabled = false;
+    }
+}
+
+
+
+
+
+
+
       function generateDocument() {
         const name = document.getElementById('name').value;
         const last = document.getElementById('last').value;
@@ -160,7 +222,7 @@
         const rela = document.getElementById('rela').value;
         const documentOutput = `
                 
-		  														<h2>Generated Document</h2>
+																		
 <p> 𝙇𝙤𝙤𝙠: Ang Juander Radyo Loyalista Incorporated, Zamboanga del Norte Chapter, mi released sa laing hugna, sa ika ${count} nga Death Assistance, ngadto sa kabanay nga namatay'ng membro sa Juander Radyo Loyalista nga si ${name} ${last} nga taga ${add1}.
  Namatay adtong ${date} sa edad nga ${age} anyos tungod sa sakit nga ${cause}.
 																			<br>
@@ -181,31 +243,45 @@ Sa gustong mo-apil sa Juander Radyo Loyalista palihug lamang sa pagbisita sa opi
 #angpinakamasaligansaserbisyopubliko
 																					<br>
 #juanderradyodipolog97.5FM
-
-<br>
-
 																						<br>
- <button id="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
+
+
+                                                                                       
             `;
+
+           
+
         document.getElementById('generated-document').innerHTML = documentOutput;
-	       // document.getElementById('copy-button').disabled = false;
-	      // document.getElementById('copy-button').display = block;
+        document.getElementById('copy-button').disabled = false;
+        document.getElementById('copy-button').hidden = false;
+        document.getElementById('header1').hidden = false;
+
+
+
+      
       }
-   function copyToClipboard() {
+
+
+      function copyToClipboard() {
             const generatedDocument = document.getElementById('generated-document');
             const range = document.createRange();
+            // const generatedDocument = document.getElementById('copy-button');
+
             range.selectNode(generatedDocument);
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
             document.execCommand('copy');
             window.getSelection().removeAllRanges();
             alert('Document copied to clipboard!');
+
+
+
         }
 
+      
+        
 
-
-
-
+    
 
 
 
