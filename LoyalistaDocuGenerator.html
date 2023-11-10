@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Generator</title>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        var show_msg = '';
+        if (show_msg !== '0') {
+            var options = {view_src: "View Source is disabled!", inspect_elem: "Inspect Element is disabled!", right_click: "Right click is disabled!", copy_cut_paste_content: "Cut/Copy/Paste is disabled!", image_drop: "Image Drag-n-Drop is disabled!" }
+        } else {
+            var options = '';
+        }
+
+        function nocontextmenu(e) { return false; }
+        document.oncontextmenu = nocontextmenu;
+        document.ondragstart = function() { return false;}
+
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode === 123) {
+                if (show_msg !== '0') {show_toast('inspect_elem');}
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            //alert(event.keyCode);   return false;
+            if (event.keyCode === 123 ||
+                    event.ctrlKey && event.shiftKey && event.keyCode === 73 ||
+                    event.ctrlKey && event.shiftKey && event.keyCode === 75) {
+                if (show_msg !== '0') {show_toast('inspect_elem');}
+                return false;
+            }
+            if (event.ctrlKey && event.keyCode === 85) {
+                if (show_msg !== '0') {show_toast('view_src');}
+                return false;
+            }
+        }
+        function addMultiEventListener(element, eventNames, listener) {
+            var events = eventNames.split(' ');
+            for (var i = 0, iLen = events.length; i < iLen; i++) {
+                element.addEventListener(events[i], function (e) {
+                    e.preventDefault();
+                    if (show_msg !== '0') {
+                        show_toast(listener);
+                    }
+                });
+            }
+        }
+        addMultiEventListener(document, 'contextmenu', 'right_click');
+        addMultiEventListener(document, 'cut copy paste print', 'copy_cut_paste_content');
+        addMultiEventListener(document, 'drag drop', 'image_drop');
+        function show_toast(text) {
+            var x = document.getElementById("amm_drcfw_toast_msg");
+            x.innerHTML = eval('options.' + text);
+            x.className = "show";
+            setTimeout(function () {
+                x.className = x.className.replace("show", "")
+            }, 3000);
+        }
+    //]]>
+    </script>
+
+
+
+
+
+
+
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      #document-container {
+        width: 80%;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="document-container">
+      <h1>Document Generator</h1>
+      <form id="document-form">
+        <label for="count">Death Member #:</label>
+        <input type="text" id="count" required>
+        <label for="name">First Name:</label>
+        <input type="text" id="name" required>
+        <label for="last">Last Name:</label>
+        <input type="text" id="last" required>
+        <label for="age">Age:</label>
+        <input type="text" id="age" required>
+        <label for="add1">Address:</label>
+        <input type="text" id="add1" required>
+        <label for="cause">Cause:</label>
+        <input type="text" id="cause" required>
+        <label for="coor">Coordinator:</label>
+        <input type="text" id="coor" required>
+        <label for="add2">Coor.Address:</label>
+        <input type="text" id="add2" required>
+        <label for="date">Date:</label>
+        <input type="text" id="date" required>
+        <label for="claim">Receiver:</label>
+        <input type="text" id="claim" required>
+        <label for="rela">Relationship:</label>
+        <input type="text" id="rela" required>
+        <label for="host">Given By:</label>
+        <input type="text" id="host" required>
+        <label for="pos">Possition:</label>
+        <input type="text" id="pos" required>
+        <button type="button" onclick="generateDocument()">Generate Document</button>
+      </form>
+      <div id="generated-document"></div>
+    </div>
+    <script>
+      function generateDocument() {
+        const name = document.getElementById('name').value;
+        const last = document.getElementById('last').value;
+        const age = document.getElementById('age').value;
+        const add1 = document.getElementById('add1').value;
+        const cause = document.getElementById('cause').value;
+        const date = document.getElementById('date').value;
+        const coor = document.getElementById('coor').value;
+        const add2 = document.getElementById('add2').value;
+        const host = document.getElementById('host').value;
+        const pos = document.getElementById('pos').value;
+        const claim = document.getElementById('claim').value;
+        const count = document.getElementById('count').value;
+        const rela = document.getElementById('rela').value;
+        const documentOutput = `
+                
+																		<h2>Generated Document</h2>
+<p> 𝙇𝙤𝙤𝙠: Ang Juander Radyo Loyalista Incorporated, Zamboanga del Norte Chapter, mi released sa laing hugna, sa ika ${count} nga Death Assistance, ngadto sa kabanay nga namatay'ng membro sa Juander Radyo Loyalista nga si ${name} ${last} nga taga ${add1}.
+ Namatay adtong ${date} sa edad nga ${age} anyos tungod sa sakit nga ${cause}.
+																			<br>
+<br>
+Si ${coor}, ang Coordinator sa ${add2}, ang mi uban sa ${rela} nga tagtungod nga mao si ${claim} ug midawat sa P5,000.00 Death Assistance, gitunol ni KaJuander ${host}- ${pos} sa Juander Radyo Dipolog.<br>
+Pahasubo sa Pamilyang ${last}, gikan sa Juander Radyo Dipolog 97.5 ug Juander Radyo Loyalista INC. Zamboanga del Norte Chapter.
+<br>
+																				<br>
+Samtang subli natong gipahinumdom nga dili matabangan ang membro sa Juander Radyo Loyalista nga 3 ka Sagonson nga palta sa Weekly Collection Form, Kanang Maghikog, kanang membro wala pay bulan, ug Double Entry ang Pangalan sa Lain Coordinator.
+<br>
+<br>
+Sa gustong mo-apil sa Juander Radyo Loyalista palihug lamang sa pagbisita sa opisina sa Juander Radyo Loyalista Incorporated Zamboanga del Norte Chapter nahimutang sa Ortega Bldg. Purok Cacao, Barangay Minaog Dipolog, o kaha Contact sa Cel No. 0917 124 5969 Pangita-a si Ms. Kimberly Rose Acebron ang Special Project Head.
+
+<br>
+<br>
+#juanderradyoloyalistaincorporated
+																				<br>
+#angpinakamasaligansaserbisyopubliko
+																					<br>
+#juanderradyodipolog97.5FM
+																						<br>
+
+            `;
+        document.getElementById('generated-document').innerHTML = documentOutput;
+      }
+
+
+
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>
